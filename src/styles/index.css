@@ -7,6 +7,10 @@
   text-decoration: none;
   letter-spacing: 0.5px;
 }
+body,
+html {
+
+}
 
 a {
   color: #222;

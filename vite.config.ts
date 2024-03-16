@@ -63,6 +63,7 @@ export default defineConfig(function () {
     },
     resolve: {
       alias: {
+        '@layout': resolve(__dirname, 'src/layout'),
         '@styles': resolve(__dirname, 'src/styles'),
         '@assets': resolve(__dirname, 'src/assets'),
         '@routes': resolve(__dirname, 'src/routes'),
