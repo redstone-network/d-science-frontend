@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Layout, Menu, MenuProps } from 'antd';
-import { Outlet, useLocation, useMatches, useNavigate, useRoutes } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const { Header, Content } = Layout;
 
@@ -44,7 +44,7 @@ const App: React.FC = () => {
         </Menu>
         <Button type="primary">connect wallet</Button>
       </Header>
-      <Content>
+      <Content style={{padding: '35px'}}>
         <Outlet/>
       </Content>
     </Layout>
