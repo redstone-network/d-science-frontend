@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Space, Table, Tag } from 'antd';
-import type { TableProps } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
+import {Button, Space, Table, Tag} from 'antd';
+import type {TableProps} from 'antd';
+import {DownloadOutlined} from '@ant-design/icons';
 
 interface DataType {
   key: string;
@@ -16,7 +16,7 @@ const columns: TableProps<DataType>['columns'] = [
     title: 'paper-filename',
     dataIndex: 'name',
     key: 'name',
-    width: 300
+    width: 300,
   },
   {
     title: 'desc',
@@ -29,9 +29,9 @@ const columns: TableProps<DataType>['columns'] = [
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <Button type="primary" icon={<DownloadOutlined />} size='small'>
-            Download
-          </Button>
+        <Button type="primary" icon={<DownloadOutlined />} size="small">
+          Download
+        </Button>
       </Space>
     ),
   },

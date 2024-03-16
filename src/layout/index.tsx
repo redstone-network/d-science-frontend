@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { Button, Layout, Menu, MenuProps } from 'antd';
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {Button, Layout, Menu, MenuProps} from 'antd';
+import {Outlet, useLocation, useNavigate} from 'react-router-dom';
 
-const { Header, Content } = Layout;
+const {Header, Content} = Layout;
 
 const items = [
   {
@@ -12,31 +12,32 @@ const items = [
   {
     key: '/treasury',
     label: `treasury`,
-  },{
+  },
+  {
     key: '/proposals',
     label: `proposals`,
-  }
-]
+  },
+];
 
 const App: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
   const [current, setCurrent] = useState(path);
-  const handleOnClick: MenuProps['onClick'] = (e) => {
+  const handleOnClick: MenuProps['onClick'] = e => {
     setCurrent(e.key);
     navigate(e.key);
   };
   return (
     <Layout>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
+      <Header style={{display: 'flex', alignItems: 'center'}}>
         <Menu
-         onClick={handleOnClick}
+          onClick={handleOnClick}
           theme="dark"
           mode="horizontal"
           selectedKeys={[current]}
           defaultSelectedKeys={['paper']}
-          style={{ flex: 1, minWidth: 0 }}
+          style={{flex: 1, minWidth: 0}}
         >
           {items.map(item => (
             <Menu.Item key={item.key}>{item.label}</Menu.Item>
@@ -45,11 +46,10 @@ const App: React.FC = () => {
         <Button type="primary">connect wallet</Button>
       </Header>
       <Content style={{padding: '35px'}}>
-        <Outlet/>
+        <Outlet />
       </Content>
     </Layout>
   );
 };
 
 export default App;
-

@@ -1,4 +1,4 @@
-import { Home, Paper, Proposals, Treasury } from '@pages';
+import {Paper, Proposals, Treasury} from '@pages';
 
 import {HOME_PATH} from './name';
 import {Navigate, RouteObject, createBrowserRouter} from 'react-router-dom';
@@ -10,19 +10,23 @@ const routes: RouteObject[] = [
     element: <Navigate to="/paper" replace />,
   },
   {
-  path: HOME_PATH, element: <Layout />,
-  children: [
-   {
-      path: 'paper',
-      element: <Paper/>
-    }, {
-      path: 'proposals',
-      element: <Proposals/>
-    },  {
-      path: 'treasury',
-      element: <Treasury/>
-    }
-  ]
-}];
+    path: HOME_PATH,
+    element: <Layout />,
+    children: [
+      {
+        path: 'paper',
+        element: <Paper />,
+      },
+      {
+        path: 'proposals',
+        element: <Proposals />,
+      },
+      {
+        path: 'treasury',
+        element: <Treasury />,
+      },
+    ],
+  },
+];
 
 export default createBrowserRouter(routes);
