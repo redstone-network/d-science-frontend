@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Flex, Input, Space, Tag} from 'antd';
+import {Button, Empty, Flex, Input, Space, Tag} from 'antd';
 import TCard from './Card';
 import css from './index.module.css';
 
@@ -20,6 +20,7 @@ const Treasury: React.FC = () => {
         <TCard />
         <TCard />
       </Flex>
+      <Empty />
     </>
   );
 };

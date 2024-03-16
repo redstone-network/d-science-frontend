@@ -1,6 +1,7 @@
-import {Avatar, Card, Input, Modal, Space} from 'antd';
-import {EditOutlined, SettingOutlined} from '@ant-design/icons';
+import {Button, Card, Input, Modal, Space} from 'antd';
 import {useState} from 'react';
+import css from './index.module.css';
+
 const {Meta} = Card;
 
 const TCard = () => {
@@ -22,12 +23,12 @@ const TCard = () => {
       <Card
         style={{width: '30%', flexShrink: 0}}
         actions={[
-          <SettingOutlined key="setting" />,
-          <EditOutlined key="edit" />,
+          <Button type="link">Donate</Button>,
+          <Button type="link">submit proposal</Button>,
         ]}
       >
-        <p>treasury:</p>
-        <p>available:</p>
+        <p className={css.info}>treasury:</p>
+        <p className={css.info}>available:</p>
       </Card>
       <Modal
         okText="submit"
