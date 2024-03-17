@@ -46,9 +46,21 @@ const App: React.FC = () => {
     if (accounts.length === 0) {
       return;
     }
-    const acc = accounts[0].address;
-    console.log(acc, acc);
-    setAccount(acc);
+
+    for (var item of accounts) {
+      if (item.address === "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY") {
+        const acc = item.address;
+        console.log(acc, acc);
+        setAccount(acc);
+      }
+    }
+
+    if (account.length == 0) {
+      const acc = accounts[0].address;
+      console.log(acc, acc);
+      setAccount(acc);
+    }
+
     return;
   };
   useEffect(() => {
