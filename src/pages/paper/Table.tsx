@@ -1,28 +1,23 @@
 import React from 'react';
-import {Button, Space, Table } from 'antd';
+import {Button, Space, Table} from 'antd';
 import type {TableProps} from 'antd';
 import {DownloadOutlined} from '@ant-design/icons';
-import { saveAs } from 'file-saver'
-import Axios from 'axios'
+import {saveAs} from 'file-saver';
+import Axios from 'axios';
 
 export interface DataType {
   id: string;
   name: string;
 }
-async function downloadFile(
-  hash: string,
-  name: string
-) {
-  console.log('sss')
+async function downloadFile(hash: string, name: string) {
   const res = await Axios({
     baseURL: import.meta.env.VITE_CESS_URL,
     url: `/api/storage/raw/${hash}`,
     method: 'GET',
     responseType: 'blob',
-  })
-  const blob = new Blob([res.data])
-  saveAs(blob, decodeURIComponent(name), { autoBom: true })
-
+  });
+  const blob = new Blob([res.data]);
+  saveAs(blob, decodeURIComponent(name), {autoBom: true});
 }
 const columns: TableProps<DataType>['columns'] = [
   {
@@ -42,7 +37,12 @@ const columns: TableProps<DataType>['columns'] = [
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <Button type="primary" onClick={() => downloadFile(_.id, _.name)} icon={<DownloadOutlined />} size="small">
+        <Button
+          type="primary"
+          onClick={() => downloadFile(_.id, _.name)}
+          icon={<DownloadOutlined />}
+          size="small"
+        >
           Download
         </Button>
       </Space>
@@ -51,10 +51,7 @@ const columns: TableProps<DataType>['columns'] = [
 ];
 
 const App: React.FC<{data: DataType[]}> = ({data}: {data: DataType[]}) => {
-
   return <Table columns={columns} dataSource={data} />;
 };
 
 export default App;
-
-

@@ -1,9 +1,8 @@
 import {FC, useState} from 'react';
 import {Button, Flex, Input, Space, Upload, UploadProps, message} from 'antd';
 import {SearchOutlined, UploadOutlined} from '@ant-design/icons';
-import PTable, { DataType } from './Table';
+import PTable, {DataType} from './Table';
 import css from './index.module.css';
-
 
 const Paper: FC = function () {
   const [keyWord, setKeyWord] = useState('');
@@ -11,8 +10,8 @@ const Paper: FC = function () {
     console.log(handleOnClick);
   };
   const list: any = localStorage.getItem('paperList')
-  ? JSON.parse(localStorage.getItem('paperList') as any)
-  : [];
+    ? JSON.parse(localStorage.getItem('paperList') as any)
+    : [];
   const [tableData, settableData] = useState<DataType[]>(list);
   const uploadProps: UploadProps = {
     name: 'file',
@@ -30,10 +29,9 @@ const Paper: FC = function () {
             name: info.file.name,
           });
           localStorage.setItem('paperList', JSON.stringify(list));
-          settableData(list)
+          settableData(list);
           message.success(`${info.file.name} file uploaded successfully`);
         }
-
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
       }
@@ -70,7 +68,7 @@ const Paper: FC = function () {
             Search
           </Button>
         </Space>
-        <PTable data={tableData}/>
+        <PTable data={tableData} />
       </div>
     </div>
   );
