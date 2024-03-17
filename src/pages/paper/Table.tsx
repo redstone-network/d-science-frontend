@@ -1,16 +1,29 @@
 import React from 'react';
-import {Button, Space, Table, Tag} from 'antd';
+import {Button, Space, Table } from 'antd';
 import type {TableProps} from 'antd';
 import {DownloadOutlined} from '@ant-design/icons';
+import { saveAs } from 'file-saver'
+import Axios from 'axios'
 
-interface DataType {
-  key: string;
+export interface DataType {
+  id: string;
   name: string;
-  age: number;
-  address: string;
-  tags: string[];
 }
+async function downloadFile(
+  hash: string,
+  name: string
+) {
+  console.log('sss')
+  const res = await Axios({
+    baseURL: import.meta.env.VITE_CESS_URL,
+    url: `/api/storage/raw/${hash}`,
+    method: 'GET',
+    responseType: 'blob',
+  })
+  const blob = new Blob([res.data])
+  saveAs(blob, decodeURIComponent(name), { autoBom: true })
 
+}
 const columns: TableProps<DataType>['columns'] = [
   {
     title: 'paper-filename',
@@ -29,7 +42,7 @@ const columns: TableProps<DataType>['columns'] = [
     key: 'action',
     render: (_, record) => (
       <Space size="middle">
-        <Button type="primary" icon={<DownloadOutlined />} size="small">
+        <Button type="primary" onClick={() => downloadFile(_.id, _.name)} icon={<DownloadOutlined />} size="small">
           Download
         </Button>
       </Space>
@@ -37,30 +50,11 @@ const columns: TableProps<DataType>['columns'] = [
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
+const App: React.FC<{data: DataType[]}> = ({data}: {data: DataType[]}) => {
 
-const App: React.FC = () => <Table columns={columns} dataSource={data} />;
+  return <Table columns={columns} dataSource={data} />;
+};
 
 export default App;
+
+
