@@ -2,30 +2,22 @@ import {equal} from '@utils';
 import {createWithEqualityFn} from 'zustand/traditional';
 
 type State = {
-  count: number;
+  account: string;
 };
 
 type Action = {
-  inc: () => void;
-  dec: () => void;
+  setAccount: (s: string) => void;
 };
 
-export const useCountState = createWithEqualityFn<State & Action>(function (
+export const useAccountState = createWithEqualityFn<State & Action>(function (
   set,
 ) {
   return {
-    count: 0,
-    inc() {
-      set(function ({count}) {
+    account: '',
+    setAccount(address: string) {
+      set(function () {
         return {
-          count: process.env.IS_E2E ? count + 2 : count + 1,
-        };
-      }, false);
-    },
-    dec() {
-      set(function ({count}) {
-        return {
-          count: process.env.IS_E2E ? count - 2 : count - 1,
+          account: address,
         };
       }, false);
     },
